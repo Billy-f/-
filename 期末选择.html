@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云计算答题小程序</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .question {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question h3 {
+            margin-top: 0;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 题目1 -->
+    <div class="question">
+        <h3>1. 在OpenStack解决方案中，负责提供持久化块存储的模块是哪一个？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. Cinder</label>
+            <label><input type="radio" name="q1" value="B"> B. Swift</label>
+            <label><input type="radio" name="q1" value="C"> C. Nova</label>
+            <label><input type="radio" name="q1" value="D"> D. Glance</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q1', ['A'])">提交答案</button>
+        <div class="result" id="result-q1"></div>
+    </div>
+
+    <!-- 题目2 -->
+    <div class="question">
+        <h3>2. 华为FusionCompute支持的存储资源类型有？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q2" value="A"> A. FusionStorage</label>
+            <label><input type="checkbox" name="q2" value="B"> B. Advanced SAN</label>
+            <label><input type="checkbox" name="q2" value="C"> C. NAS</label>
+            <label><input type="checkbox" name="q2" value="D"> D. IP SAN</label>
+            <label><input type="checkbox" name="q2" value="E"> E. FC SAN</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q2', ['A', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q2"></div>
+    </div>
+
+    <!-- 题目3 -->
+    <div class="question">
+        <h3>3. 华为FusionCompute支持批量添加主机，管理员按照系统提供的模板填写主机信息并一次性导入。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. TRUE</label>
+            <label><input type="radio" name="q3" value="B"> B. FALSE</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q3', ['A'])">提交答案</button>
+        <div class="result" id="result-q3"></div>
+    </div>
+
+    <!-- 题目4 -->
+    <div class="question">
+        <h3>4. 以下关于华为FusionCompute架构描述不正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. CNA为虚拟机提供了计算资源</label>
+            <label><input type="radio" name="q4" value="B"> B. VRM可以运行在CAN上，也可以单独物理机部署</label>
+            <label><input type="radio" name="q4" value="C"> C. VRM为管理员提供了管理portal</label>
+            <label><input type="radio" name="q4" value="D"> D. CNA可以管理集群网络、存储和计算资源</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q4', ['D'])">提交答案</button>
+        <div class="result" id="result-q4"></div>
+    </div>
+
+    <!-- 题目5 -->
+    <div class="question">
+        <h3>5. 随着“互联网”的被重视已经大数据、云计算的兴起，相关技术更是如雨后春笋般进入大家的视野中，其中被广泛应用和重视的就是Docker，下列关于Docker的说法不正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. Docker可以打包应用的底层环境，保证各应用在进行迁移后仍然可以正常运行</label>
+            <label><input type="radio" name="q5" value="B"> B. Docker需要在宿主机或者宿主机操作系统上创建虚拟层、虚拟操作系统等，然后再进行安装</label>
+            <label><input type="radio" name="q5" value="C"> C. Docker与其他虚拟机技术相比，Docker的启动速度更快</label>
+            <label><input type="radio" name="q5" value="D"> D. Docker利用容器来运行，容器是从image创建的运行实例</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q5', ['B'])">提交答案</button>
+        <div class="result" id="result-q5"></div>
+    </div>
+
+    <!-- 题目6 -->
+    <div class="question">
+        <h3>6. 在华为FusionCompute中，当虚拟机处于“运行中”或“已停止”状态时，用户都可以增减虚拟机的vCPU数。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q6" value="A"> A. TRUE</label>
+            <label><input type="radio" name="q6" value="B"> B. FALSE</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q6', ['B'])">提交答案</button>
+        <div class="result" id="result-q6"></div>
+    </div>
+
+    <!-- 题目7 -->
+    <div class="question">
+        <h3>7. 虚拟机一般都有对应的配置文件，记录该虚拟机的规格、名称等信息。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q7" value="A"> A. TRUE</label>
+            <label><input type="radio" name="q7" value="B"> B. FALSE</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q7', ['A'])">提交答案</button>
+        <div class="result" id="result-q7"></div>
+    </div>
+
+    <!-- 题目8 -->
+    <div class="question">
+        <h3>8. 在华为FusionCompute中，如果Windows虚拟机发生蓝屏，系统可以执行哪些操作？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q8" value="A"> A. HA虚拟机</label>
+            <label><input type="checkbox" name="q8" value="B"> B. 使用快照恢复虚拟机</label>
+            <label><input type="checkbox" name="q8" value="C"> C. 重启虚拟机</label>
+            <label><input type="checkbox" name="q8" value="D"> D. 不处理</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q8', ['A', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q8"></div>
+    </div>
+
+    <!-- 题目9 -->
+    <div class="question">
+        <h3>9. 在华为FusionCompute中，若绑定网口中只有一个物理网口，则该物理网口不能被直接移除。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q9" value="A"> A. True</label>
+            <label><input type="radio" name="q9" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q9', ['A'])">提交答案</button>
+        <div class="result" id="result-q9"></div>
+    </div>
+
+    <!-- 题目10 -->
+    <div class="question">
+        <h3>10. 在华为FusionCompute中，用户使用VNC登录虚拟机后发现不能正常操作，存在卡死的现象（如无法打开文件等），造成此故障最可能的原因是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q10" value="A"> A. 虚拟机损坏</label>
+            <label><input type="radio" name="q10" value="B"> B. 业务链路不稳定</label>
+            <label><input type="radio" name="q10" value="C"> C. 管理链路不稳定</label>
+            <label><input type="radio" name="q10" value="D"> D. 存储链路不稳定</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q10', ['C'])">提交答案</button>
+        <div class="result" id="result-q10"></div>
+    </div>
+
+    <!-- 题目11 -->
+    <div class="question">
+        <h3>11. 以下关于大数据与云计算的描述正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q11" value="A"> A. 云计算是指无法在一定时间范围内用常规软件工具进行捕捉、管理和处理的数据集合</label>
+            <label><input type="radio" name="q11" value="B"> B. 大数据是一种按量付费的模式，这种模式提供可用的、便携的、按需的网络访问</label>
+            <label><input type="radio" name="q11" value="C"> C. 云计算无法作为大数据处理的底层计算资源</label>
+            <label><input type="radio" name="q11" value="D"> D. 大数据可以作为云计算的一类服务，供用户按需选择</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q11', ['D'])">提交答案</button>
+        <div class="result" id="result-q11"></div>
+    </div>
+
+    <!-- 题目12 -->
+    <div class="question">
+        <h3>12. 虚拟机热迁移是指在虚拟机关机的状态下，将同一个集群中的虚拟机从一台物理服务器移动至另一台物理服务器。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q12" value="A"> A. True</label>
+            <label><input type="radio" name="q12" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q12', ['B'])">提交答案</button>
+        <div class="result" id="result-q12"></div>
+    </div>
+
+    <!-- 题目13 -->
+    <div class="question">
+        <h3>13. 在NAS环境中，多台主机同时对一个文件进行写操作会带来数据一致性问题。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q13" value="A"> A. True</label>
+            <label><input type="radio" name="q13" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q13', ['B'])">提交答案</button>
+        <div class="result" id="result-q13"></div>
+    </div>
+
+    <!-- 题目14 -->
+    <div class="question">
+        <h3>14. FusionCompute中，管理员将CNA主机的两个网卡通过主备模式绑定，绑定后传输速率等于两个网口的传输速率之和。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q14" value="A"> A. True</label>
+            <label><input type="radio" name="q14" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q14', ['B'])">提交答案</button>
+        <div class="result" id="result-q14"></div>
+    </div>
+
+    <!-- 题目15 -->
+    <div class="question">
+        <h3>15. 以下关于分布式存储描述正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q15" value="A"> A. 分布式存储的磁盘来自于x86架构的磁盘阵列</label>
+            <label><input type="radio" name="q15" value="B"> B. 分布式存储的磁盘来自于个人PC</label>
+            <label><input type="radio" name="q15" value="C"> C. 分布式存储的磁盘来自于x86架构的服务器</label>
+            <label><input type="radio" name="q15" value="D"> D. 分布式存储的磁盘来自于x86架构的虚拟机</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q15', ['C'])">提交答案</button>
+        <div class="result" id="result-q15"></div>
+    </div>
+
+    <!-- 题目16 -->
+    <div class="question">
+        <h3>16. 计算虚拟化技术可以提高应用程序可靠性的原因是？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q16" value="A"> A. 承载应用程序的虚拟机和硬件解耦，可以使用虚拟机在多个物理主机间迁移</label>
+            <label><input type="checkbox" name="q16" value="B"> B. 使用计算机虚拟化技术可以自动将承载应用程序的虚拟机分配到资源充足的物理主机</label>
+            <label><input type="checkbox" name="q16" value="C"> C. 使用计算虚拟化技术可以使多个应用同时运行在一台物理主机上</label>
+            <label><input type="checkbox" name="q16" value="D"> D. 使用计算虚拟化技术可以自动调整虚拟化规格</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q16', ['A', 'B'])">提交答案</button>
+        <div class="result" id="result-q16"></div>
+    </div>
+
+    <!-- 题目17 -->
+    <div class="question">
+        <h3>17. 在华为FusionCompute中，开启计算资源调度自动化功能后，虚拟机发生迁移的原因可能是？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q17" value="A"> A. windows虚拟机发生蓝屏并且处理策略为“HA虚拟机”</label>
+            <label><input type="checkbox" name="q17" value="B"> B. 运行在虚拟机上的应用程序崩溃</label>
+            <label><input type="checkbox" name="q17" value="C"> C. 管理员根据系统提示手动迁移</label>
+            <label><input type="checkbox" name="q17" value="D"> D. 系统根据调度策略自动迁移</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q17', ['C', 'D'])">提交答案</button>
+        <div class="result" id="result-q17"></div>
+    </div>
+
+    <!-- 题目18 -->
+    <div class="question">
+        <h3>18. 华为FusionCompute可以在虚拟机运行过程中感知全局物理资源的使用情况，并通过智能调度算法，计算出适合虚拟机运行的最佳主机，并通过热迁移等手段将虚拟机运行在最佳主机上，从而提升全局业务体验。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q18" value="A"> A. True</label>
+            <label><input type="radio" name="q18" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q18', ['A'])">提交答案</button>
+        <div class="result" id="result-q18"></div>
+    </div>
+
+    <!-- 题目19 -->
+    <div class="question">
+        <h3>19. 以下关于华为FusionCompute HA描述不正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q19" value="A"> A. 虚拟机的数据如果保存在共享存储内，发生故障时保存的数据不会丢失</label>
+            <label><input type="radio" name="q19" value="B"> B. 该功能支持虚拟机故障后自动重启</label>
+            <label><input type="radio" name="q19" value="C"> C. 系统周期检测虚拟机状态，当物理服务器故障引起虚拟机故障时，系统可以将虚拟机迁移到其他物理服务器重新启动，保证虚拟机能够快速恢复</label>
+            <label><input type="radio" name="q19" value="D"> D. 管理员可以根据虚拟机的重要程度，设置不同的HA策略</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q19', ['C'])">提交答案</button>
+        <div class="result" id="result-q19"></div>
+    </div>
+
+    <!-- 题目20 -->
+    <div class="question">
+        <h3>20. 在华为FusionCompute中，多台虚拟机同时对同一个共享磁盘进行写操作时，为了防止数据丢失，需要保证应用软件对磁盘的访问控制。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q20" value="A"> A. True</label>
+            <label><input type="radio" name="q20" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q20', ['A'])">提交答案</button>
+        <div class="result" id="result-q20"></div>
+    </div>
+
+    <!-- 题目21 -->
+    <div class="question">
+        <h3>21. 在OpenStack解决方案中，负载提供持久化块存储的模块是哪一个？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q21" value="A"> A. Swift</label>
+            <label><input type="radio" name="q21" value="B"> B. Glance</label>
+            <label><input type="radio" name="q21" value="C"> C. Nova</label>
+            <label><input type="radio" name="q21" value="D"> D. Cinder</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q21', ['D'])">提交答案</button>
+        <div class="result" id="result-q21"></div>
+    </div>
+
+    <!-- 题目22 -->
+    <div class="question">
+        <h3>22. 以下关于快照的描述不正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q22" value="A"> A. 一台虚拟机可以创建多个快照，使用快照恢复虚拟机时，会导致其后的快照失效</label>
+            <label><input type="radio" name="q22" value="B"> B. 快照既可以保存虚拟机设置，也可以保存虚拟机磁盘的数据</label>
+            <label><input type="radio" name="q22" value="C"> C. 一台主机上的所有虚拟机只能同时创建一个内存快照</label>
+            <label><input type="radio" name="q22" value="D"> D. 快照可以保存虚拟机内存的状况</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q22', ['A'])">提交答案</button>
+        <div class="result" id="result-q22"></div>
+    </div>
+
+    <!-- 题目23 -->
+    <div class="question">
+        <h3>23. 在华为FusionCompute中，以下关于安全组和规则描述不正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q23" value="A"> A. 安全组规则的变更需要手动应用到安全组内的虚拟机</label>
+            <label><input type="radio" name="q23" value="B"> B. 必须先创建安全组，才能添加规则</label>
+            <label><input type="radio" name="q23" value="C"> C. 安全组在未添加规则前，默认拒绝所有</label>
+            <label><input type="radio" name="q23" value="D"> D. 删除安全组的前提是安全组内无虚拟机</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q23', ['A'])">提交答案</button>
+        <div class="result" id="result-q23"></div>
+    </div>
+
+    <!-- 题目24 -->
+    <div class="question">
+        <h3>24. 交换机根据用途可分为接入交换机、汇聚交换机和核心交换机，虚拟交换机属于汇聚交换机。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q24" value="A"> A. True</label>
+            <label><input type="radio" name="q24" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q24', ['B'])">提交答案</button>
+        <div class="result" id="result-q24"></div>
+    </div>
+
+    <!-- 题目25 -->
+    <div class="question">
+        <h3>25. 使用虚拟化技术可以将一台物理服务器虚拟成多台虚拟机，从而提升了物理服务器的硬件性能。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q25" value="A"> A. True</label>
+            <label><input type="radio" name="q25" value="B"> B. False</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q25', ['B'])">提交答案</button>
+        <div class="result" id="result-q25"></div>
+    </div>
+
+    <!-- 题目26 -->
+    <div class="question">
+        <h3>26. 以下关于虚拟化描述正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q26" value="A"> A. 虚拟化和非虚拟化不能同时在一个数据中心中存在</label>
+            <label><input type="radio" name="q26" value="B"> B. 在物理机上能运行的应用一定也可以在虚拟机上运行</label>
+            <label><input type="radio" name="q26" value="C"> C. 虚拟化可以提高硬件资源的统一性</label>
+            <label><input type="radio" name="q26" value="D"> D. 使用不同类型虚拟化技术的虚拟机间能够互相转换</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q26', ['C'])">提交答案</button>
+        <div class="result" id="result-q26"></div>
+    </div>
+
+    <!-- 题目27 -->
+    <div class="question">
+        <h3>27. 虚拟机一般虚拟机配置信息和磁盘文件组成，用户可以通过移动两个文件来实现虚拟机在不同的物理主机上运行。以上描述体现了云计算的哪些特点？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q27" value="A"> A. 分区</label>
+            <label><input type="checkbox" name="q27" value="B"> B. 隔离</label>
+            <label><input type="checkbox" name="q27" value="C"> C. 独立</label>
+            <label><input type="checkbox" name="q27" value="D"> D. 封装</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q27', ['C', 'D'])">提交答案</button>
+        <div class="result" id="result-q27"></div>
+    </div>
+
+    <!-- 题目28 -->
+    <div class="question">
+        <h3>28. 在华为FusionCompute中，关于虚拟机迁移描述不正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q28" value="A"> A. 源主机和目的主机之间通信正常</label>
+            <label><input type="radio" name="q28" value="B"> B. 目的存储为不同存储设备</label>
+            <label><input type="radio" name="q28" value="C"> C. 虚拟机状态为“运行中”</label>
+            <label><input type="radio" name="q28" value="D"> D. 目的主机须有足够的资源</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q28', ['B'])">提交答案</button>
+        <div class="result" id="result-q28"></div>
+    </div>
+
+    <!-- 题目29 -->
+    <div class="question">
+        <h3>29. 在云计算中相同类型不同型号的硬件可以组成一个资源池。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q29" value="A"> A. TRUE</label>
+            <label><input type="radio" name="q29" value="B"> B. FALSE</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q29', ['A'])">提交答案</button>
+        <div class="result" id="result-q29"></div>
+    </div>
+
+    <!-- 题目30 -->
+    <div class="question">
+        <h3>30. 以下关于模板描述不正确的是？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q30" value="A"> A. 虚拟机克隆为模板后，虚拟机还存在</label>
+            <label><input type="radio" name="q30" value="B"> B. 使用模板部署虚拟机时，可自定义参数</label>
+            <label><input type="radio" name="q30" value="C"> C. 将模板转为虚拟机之后，模板不再存在</label>
+            <label><input type="radio" name="q30" value="D"> D. 模板可以跨虚拟化平台使用</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q30', ['D'])">提交答案</button>
+        <div class="result" id="result-q30"></div>
+    </div>
+
+    <!-- 题目31 -->
+    <div class="question">
+        <h3>31. 以下关于KVM和Xen描述正确的是？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q31" value="A"> A. Xen虚拟机可以转换成KVM虚拟机</label>
+            <label><input type="checkbox" name="q31" value="B"> B. Domain 0和Domain U是KVM中的概念</label>
+            <label><input type="checkbox" name="q31" value="C"> C. KVM和Xen都是开源的Hypervisor</label>
+            <label><input type="checkbox" name="q31" value="D"> D. KVM和Xen可以运行在同一个Host OS中</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q31', ['A', 'C'])">提交答案</button>
+        <div class="result" id="result-q31"></div>
+    </div>
+
+    <!-- 题目32 -->
+    <div class="question">
+        <h3>32. FC SAN，相比以下哪个不是IP SAN的优势？（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q32" value="A"> A. 带宽扩展方便</label>
+            <label><input type="radio" name="q32" value="B"> B. 构建成本低</label>
+            <label><input type="radio" name="q32" value="C"> C. 距离远</label>
+            <label><input type="radio" name="q32" value="D"> D. 传输效率高</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q32', ['D'])">提交答案</button>
+        <div class="result" id="result-q32"></div>
+    </div>
+
+    <!-- 题目33 -->
+    <div class="question">
+        <h3>33. 快照创建过程中，可以对虚拟机进行其他操作。（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q33" value="A"> A. TURE</label>
+            <label><input type="radio" name="q33" value="B"> B. FALSE</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q33', ['B'])">提交答案</button>
+        <div class="result" id="result-q33"></div>
+    </div>
+
+    <!-- 题目34 -->
+    <div class="question">
+        <h3>34. 关于VNC说法正确的是？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q34" value="A"> A. VNC需要支持Linux操作系统</label>
+            <label><input type="checkbox" name="q34" value="B"> B. 被控制的计算机需要安装相应的软件成为VNC server</label>
+            <label><input type="checkbox" name="q34" value="C"> C. VNC是一款轻量型远程控制软件</label>
+            <label><input type="checkbox" name="q34" value="D"> D. 发起控制请求的主机需要安装相应的软件成为VNC server</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q34', ['B', 'C'])">提交答案</button>
+        <div class="result" id="result-q34"></div>
+    </div>
+
+    <script>
+        function checkAnswer(questionId, correctAnswers) {
+            const options = document.querySelectorAll(`input[name=${questionId}]:checked`);
+            const selectedAnswers = Array.from(options).map(option => option.value);
+            const resultDiv = document.getElementById(`result-${questionId}`);
+
+            if (selectedAnswers.length === 0) {
+                resultDiv.textContent = "请选择答案！";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            const isCorrect = selectedAnswers.length === correctAnswers.length &&
+                             selectedAnswers.every(answer => correctAnswers.includes(answer));
+
+            if (isCorrect) {
+                resultDiv.textContent = "回答正确！";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "回答错误！正确答案是：" + correctAnswers.join(", ");
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
