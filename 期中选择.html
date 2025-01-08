@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云计算题库答题小程序</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .question {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question h3 {
+            margin-top: 0;
+        }
+        .options {
+            margin: 10px 0;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .submit-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .fill-in-blank {
+            margin-top: 10px;
+        }
+        .fill-in-blank input {
+            width: 100px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 题目1 -->
+    <div class="question">
+        <h3>1. 在华为FusionCompute中，虚拟化存储支持的特性有（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q1" value="A"> A. 快照</label>
+            <label><input type="checkbox" name="q1" value="B"> B. 自动精简配置</label>
+            <label><input type="checkbox" name="q1" value="C"> C. 磁盘扩容</label>
+            <label><input type="checkbox" name="q1" value="D"> D. 存储热迁移</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q1', ['A', 'B', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q1"></div>
+    </div>
+
+    <!-- 题目2 -->
+    <div class="question">
+        <h3>2. 以下关于KVM和Xen描述正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q2" value="A"> A. Xen虚拟机可以转换成KVM虚拟机</label>
+            <label><input type="checkbox" name="q2" value="B"> B. Domain 0和Domain U是KVM中的概念</label>
+            <label><input type="checkbox" name="q2" value="C"> C. KVM和Xen都是开源的Hypervisor</label>
+            <label><input type="checkbox" name="q2" value="D"> D. KVM和Xen可以运行在同一个HostOs中</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q2', ['A', 'C'])">提交答案</button>
+        <div class="result" id="result-q2"></div>
+    </div>
+
+    <!-- 题目3 -->
+    <div class="question">
+        <h3>3. 在华为Fusioncompute中，以下对虚拟机HA的描述正确的有（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q3" value="A"> A. 在集群中开启HA功能后，主机发生故障后，虚拟机可以在其他主机上重建</label>
+            <label><input type="checkbox" name="q3" value="B"> B. 系统检测到虚拟机蓝屏且配置策略为HA时，系统会选择其他正常的计算节点重建虚拟机</label>
+            <label><input type="checkbox" name="q3" value="C"> C. 集群中只有预留了资源，故障发生时，具有属性的虚拟机就能在其他计算节点重建成功</label>
+            <label><input type="checkbox" name="q3" value="D"> D. 虚拟机HA功能可以在故障发生时，迅速恢复业务</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q3', ['A', 'B', 'D'])">提交答案</button>
+        <div class="result" id="result-q3"></div>
+    </div>
+
+    <!-- 题目5 -->
+    <div class="question">
+        <h3>5. 以下关于虚拟化描述不正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q5" value="A"> A. 在云计算中，IaaS层虚拟化可以分为计算虚拟化、存储虚拟化和网络虚拟化</label>
+            <label><input type="checkbox" name="q5" value="B"> B. 存储虚拟化指的是分布式存储</label>
+            <label><input type="checkbox" name="q5" value="C"> C. 网络虚拟化指的是分布式虚拟交换机</label>
+            <label><input type="checkbox" name="q5" value="D"> D. 计算虚拟化包括CPU虚拟化、内存虚拟化和IO虚拟化</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q5', ['B', 'C'])">提交答案</button>
+        <div class="result" id="result-q5"></div>
+    </div>
+
+    <!-- 题目6 -->
+    <div class="question">
+        <h3>6. 在华为FusionCompute中，虚拟机绑定USB设别后，哪些功能将受到影响（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q6" value="A"> A. 虚拟机重启</label>
+            <label><input type="checkbox" name="q6" value="B"> B. 虚拟机资源扩容</label>
+            <label><input type="checkbox" name="q6" value="C"> C. 集群调度策略</label>
+            <label><input type="checkbox" name="q6" value="D"> D. 虚拟机热迁移</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q6', ['C', 'D'])">提交答案</button>
+        <div class="result" id="result-q6"></div>
+    </div>
+
+    <!-- 题目7 -->
+    <div class="question">
+        <h3>7. 关于VNC说法正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q7" value="A"> A. 被控制的计算机需要安装相应的软件成为VNC server</label>
+            <label><input type="checkbox" name="q7" value="B"> B. VNC是一款轻量型远程控制软件</label>
+            <label><input type="checkbox" name="q7" value="C"> C. 发起控制请求的主机需要相应的软件成为VNC</label>
+            <label><input type="checkbox" name="q7" value="D"> D. VNC需要支持Linux操作系统</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q7', ['A', 'B'])">提交答案</button>
+        <div class="result" id="result-q7"></div>
+    </div>
+
+    <!-- 题目8 -->
+    <div class="question">
+        <h3>8. 计算虚拟化技术可以提高应用程序可靠性的原因是？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q8" value="A"> A. 承载应用程序的虚拟机和硬件解耦，可以使用虚拟机在多个物理主机间迁移</label>
+            <label><input type="checkbox" name="q8" value="B"> B. 使用计算虚拟化技术可以使多个应用同时运行在一台物理主机上</label>
+            <label><input type="checkbox" name="q8" value="C"> C. 使用计算虚拟化技术可自动调整虚拟化规格</label>
+            <label><input type="checkbox" name="q8" value="D"> D. 使用计算机虚拟化技术可以自动将承载应用程序的虚拟机分配到资源充足的物理主机上</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q8', ['A', 'D'])">提交答案</button>
+        <div class="result" id="result-q8"></div>
+    </div>
+
+    <!-- 题目9 -->
+    <div class="question">
+        <h3>9. 在华为FusionCompute中，如果Windows虚拟机发生蓝屏，系统可以执行哪些操作？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q9" value="A"> A. HA虚拟机</label>
+            <label><input type="checkbox" name="q9" value="B"> B. 使用快照回复虚拟机</label>
+            <label><input type="checkbox" name="q9" value="C"> C. 重启虚拟机</label>
+            <label><input type="checkbox" name="q9" value="D"> D. 不处理</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q9', ['A', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q9"></div>
+    </div>
+
+    <!-- 题目10 -->
+    <div class="question">
+        <h3>10. 在KVM类型的虚拟化中，以下描述正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q10" value="A"> A. GuestOs可以是Linux</label>
+            <label><input type="checkbox" name="q10" value="B"> B. HostOs可以是Windows</label>
+            <label><input type="checkbox" name="q10" value="C"> C. HostOs可以是Linux</label>
+            <label><input type="checkbox" name="q10" value="D"> D. GuestOs可以是windows</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q10', ['A', 'B', 'D'])">提交答案</button>
+        <div class="result" id="result-q10"></div>
+    </div>
+
+    <!-- 题目11 -->
+    <div class="question">
+        <h3>11. 关于Libvirt在KVM（kernel-based virtua lMachine）中的作用描述正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q11" value="A"> A. Libvirt是KVM的管理工具之一</label>
+            <label><input type="checkbox" name="q11" value="B"> B. Libvirt是为KVM定制开发的</label>
+            <label><input type="checkbox" name="q11" value="C"> C. 通过调用Libvirt接口，多种编程语言可以操作KVM虚拟机</label>
+            <label><input type="checkbox" name="q11" value="D"> D. Libvirt是KVM架构中不可缺少的组成</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q11', ['A', 'C'])">提交答案</button>
+        <div class="result" id="result-q11"></div>
+    </div>
+
+    <!-- 题目12 -->
+    <div class="question">
+        <h3>12. 以6G内存规格的主机为例，假设其上运行有三台4G内存规格的虚拟机，内存份额分别为20480、20480、40960。当三个虚拟机内部均逐步加压，策略会根据三个虚拟机的份额按比例分配调整内存资源，最终三个虚拟机获得的内存量稳定为__、__、__。（填空题）</h3>
+        <div class="fill-in-blank">
+            <input type="text" id="q12-1" placeholder="第一空">
+            <input type="text" id="q12-2" placeholder="第二空">
+            <input type="text" id="q12-3" placeholder="第三空">
+        </div>
+        <button class="submit-btn" onclick="checkFillInBlank('q12', ['1.5GHz', '1.5GHz', '3GHz'])">提交答案</button>
+        <div class="result" id="result-q12"></div>
+    </div>
+
+    <!-- 题目13 -->
+    <div class="question">
+        <h3>13. 云计算的应用给人们的生活带来了革命性的变化，它的主要特征是__、__、__、__、__。（填空题）</h3>
+        <div class="fill-in-blank">
+            <input type="text" id="q13-1" placeholder="第一空">
+            <input type="text" id="q13-2" placeholder="第二空">
+            <input type="text" id="q13-3" placeholder="第三空">
+            <input type="text" id="q13-4" placeholder="第四空">
+            <input type="text" id="q13-5" placeholder="第五空">
+        </div>
+        <button class="submit-btn" onclick="checkFillInBlank('q13', ['按需自助服务', '广泛的网络接入', '快速弹性伸缩', '可计量的服务', '资源池化'])">提交答案</button>
+        <div class="result" id="result-q13"></div>
+    </div>
+
+    <!-- 题目14 -->
+    <div class="question">
+        <h3>14. 以下关于云部署模式描述正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q14" value="A"> A. 行业云一般会具备某个行业的恃注，属于“大私有云”或者“小公有云”</label>
+            <label><input type="checkbox" name="q14" value="B"> B. 混合云一般由运营商或云服务建设，融合了公有云和私有云的特点，以出售或者租赁的方式供城使用</label>
+            <label><input type="checkbox" name="q14" value="C"> C. 私有云一般部署在企业内部，供企业内部员工使用</label>
+            <label><input type="checkbox" name="q14" value="D"> D. 公有云一般由运营商或云服务商建设，以出售或者租赁的方式供大众使用</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q14', ['A', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q14"></div>
+    </div>
+
+    <!-- 题目15 -->
+    <div class="question">
+        <h3>15. 一个主频为2.8GHz的单核物理主机为例，如果上面运行有三台单CPU的虚拟机。三个虚拟机A，B，C，份额分别为1000，2000，4000。三个虚拟机A，B，C，预留分别为700MHz，0MHz，0MHz，限制分别为1.4GHz，2.8GHz，2.8GHz，虚拟机A可能分到的CPU资源为（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q15" value="A"> A. 400MHz</label>
+            <label><input type="checkbox" name="q15" value="B"> B. 1.4GHz</label>
+            <label><input type="checkbox" name="q15" value="C"> C. 700MHz</label>
+            <label><input type="checkbox" name="q15" value="D"> D. 2.8GHz</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q15', ['B', 'C'])">提交答案</button>
+        <div class="result" id="result-q15"></div>
+    </div>
+
+    <!-- 题目17 -->
+    <div class="question">
+        <h3>17. 关于FusionCompute集群创建的描述，以下哪些是正确的（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q17" value="A"> A. 集群开启GuestNUMA后，集群内的虚拟机需要重启才能生效</label>
+            <label><input type="checkbox" name="q17" value="B"> B. 集群开启主机内存复用后，主机上创建的虚拟机内存总数可以超过主机物理内存</label>
+            <label><input type="checkbox" name="q17" value="C"> C. 集群开启IMC模式，可以避免因CPU不兼容而导致的虚拟机迁移失败</label>
+            <label><input type="checkbox" name="q17" value="D"> D. 集群开启HA后，集群内的虚拟机才可以开启HA</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q17', ['A', 'B', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q17"></div>
+    </div>
+
+    <!-- 题目18 -->
+    <div class="question">
+        <h3>18. 以下关于RAID的描述正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q18" value="A"> A. RAID是通过在多个磁盘上并发读写数据来提高存储系统的I/O性能</label>
+            <label><input type="checkbox" name="q18" value="B"> B. 当一块磁盘出现损坏后，RAID 5中的其他磁盘仍能正常工作，磁盘I/O性能不受影响</label>
+            <label><input type="checkbox" name="q18" value="C"> C. RAID 6与RAID 5相比，数据恢复能力更强，但磁盘的读写能力下降</label>
+            <label><input type="checkbox" name="q18" value="D"> D. RAID可以看作是由两个或更多个磁盘组成的存储空间，其可用容量为各磁盘容量之和</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q18', ['A', 'C'])">提交答案</button>
+        <div class="result" id="result-q18"></div>
+    </div>
+
+    <!-- 题目19 -->
+    <div class="question">
+        <h3>19. 以下哪些描述了集中式存储的缺点（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q19" value="A"> A. 集中式存储资源缺乏共享，存储设备和资源往往由不同厂家提供，设备之间无法进行资源共享，数据中心看到的是一个个孤立的存储池</label>
+            <label><input type="checkbox" name="q19" value="B"> B. 孤立的存储资源，存储通过专用网络连接到有限数量的服务器</label>
+            <label><input type="checkbox" name="q19" value="C"> C. 集中式纵向扩容通过增加硬盘框实现，硬件控制器性能（单控制器带盘能力）成为瓶颈</label>
+            <label><input type="checkbox" name="q19" value="D"> D. 集中式存储横向扩容需要通过控制器全连接实现，硬件控制器性能成为扩容瓶颈</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q19', ['A', 'B', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q19"></div>
+    </div>
+
+    <!-- 题目21 -->
+    <div class="question">
+        <h3>21. A公司有300名员工，出于信息安全的考虑，甲公司希望对员工办公过程中产生的数据进行集中管控，并且降低IT运维人员处理办公电脑软硬件故障问题的工作量，请问建议A公司采用以下哪种解决方案（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q21" value="A"> A. eBackup备份</label>
+            <label><input type="radio" name="q21" value="B"> B. FusionSphere服务器虚拟化</label>
+            <label><input type="radio" name="q21" value="C"> C. FusionSphere私有云</label>
+            <label><input type="radio" name="q21" value="D"> D. FusionAccess桌面云</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q21', ['D'])">提交答案</button>
+        <div class="result" id="result-q21"></div>
+    </div>
+
+    <!-- 题目22 -->
+    <div class="question">
+        <h3>22. 在计算虚拟化中，为虚拟机分配CPU和内存的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q22" value="A"> A. Guest OS</label>
+            <label><input type="checkbox" name="q22" value="B"> B. Hypervisor</label>
+            <label><input type="checkbox" name="q22" value="C"> C. Host OS</label>
+            <label><input type="checkbox" name="q22" value="D"> D. VMM</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q22', ['B', 'D'])">提交答案</button>
+        <div class="result" id="result-q22"></div>
+    </div>
+
+    <!-- 题目23 -->
+    <div class="question">
+        <h3>23. 采用智能负载均衡调度算法，通过周期性检查同一集群资源内各个主机的负载情况，在不同的主机间迁移虚拟机，从而实现同一集群内不同主机间的负载均衡，并最大程度降低系统的功耗。（判断题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q23" value="A"> A. 正确</label>
+            <label><input type="radio" name="q23" value="B"> B. 错误</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q23', ['A'])">提交答案</button>
+        <div class="result" id="result-q23"></div>
+    </div>
+
+    <!-- 题目24 -->
+    <div class="question">
+        <h3>24. NAS和SAN最大的区别就在于NAS有文件操作和管理系统，而SAN却没有这样的系统功能，其功能仅仅停留在文件管理的下一层，即数据管理（判断题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q24" value="A"> A. 正确</label>
+            <label><input type="radio" name="q24" value="B"> B. 错误</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q24', ['A'])">提交答案</button>
+        <div class="result" id="result-q24"></div>
+    </div>
+
+    <!-- 题目25 -->
+    <div class="question">
+        <h3>25. 在FusionSphere服务器虚拟化场景中，以下操作无法在FusionCompute“集群配置”中实现的是（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q25" value="A"> A. 磁盘热添加</label>
+            <label><input type="radio" name="q25" value="B"> B. IMC模式配置</label>
+            <label><input type="radio" name="q25" value="C"> C. 计算资源调度配置</label>
+            <label><input type="radio" name="q25" value="D"> D. 集群HA配置</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q25', ['A'])">提交答案</button>
+        <div class="result" id="result-q25"></div>
+    </div>
+
+    <!-- 题目26 -->
+    <div class="question">
+        <h3>26. Xen采用的是一种半虚拟化技术？（判断题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q26" value="A"> A. 正确</label>
+            <label><input type="radio" name="q26" value="B"> B. 错误</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q26', ['A'])">提交答案</button>
+        <div class="result" id="result-q26"></div>
+    </div>
+
+    <!-- 题目27 -->
+    <div class="question">
+        <h3>27. SAN主要用于小型企业和个人用户的数据存储，如文件共享、照片备份和媒体存储。（判断题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q27" value="A"> A. 正确</label>
+            <label><input type="radio" name="q27" value="B"> B. 错误</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q27', ['B'])">提交答案</button>
+        <div class="result" id="result-q27"></div>
+    </div>
+
+    <!-- 题目29 -->
+    <div class="question">
+        <h3>29. IP SAN，相比于FC SAN以下哪些是IP SAN的优势（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q29" value="A"> A. 带宽扩展方便</label>
+            <label><input type="checkbox" name="q29" value="B"> B. 构建成本低</label>
+            <label><input type="checkbox" name="q29" value="C"> C. 距离远</label>
+            <label><input type="checkbox" name="q29" value="D"> D. 传输效率高</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q29', ['A', 'B', 'C'])">提交答案</button>
+        <div class="result" id="result-q29"></div>
+    </div>
+
+    <!-- 题目30 -->
+    <div class="question">
+        <h3>30. 如果一个企业使用了混合云，不可以作为公有云和私有云分界点的设备是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q30" value="A"> A. 流量清洗设备</label>
+            <label><input type="checkbox" name="q30" value="B"> B. 虚拟交换机</label>
+            <label><input type="checkbox" name="q30" value="C"> C. 防火墙</label>
+            <label><input type="checkbox" name="q30" value="D"> D. 核心交换机</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q30', ['B', 'D'])">提交答案</button>
+        <div class="result" id="result-q30"></div>
+    </div>
+
+    <!-- 题目31 -->
+    <div class="question">
+        <h3>31. 计算虚拟化技术可以提高应用程序可靠性的原因是( )（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q31" value="A"> A. 承载应用程序的虚拟机和硬件解耦，可以使用虚似机在多个物理主机间迁移</label>
+            <label><input type="checkbox" name="q31" value="B"> B. 使用计算机虚拟化技术可以自动将承载应用程序的虚拟机分配到资源充足的物理主机</label>
+            <label><input type="checkbox" name="q31" value="C"> C. 使用计算虚拟化技术可以自动调離拟化规格</label>
+            <label><input type="checkbox" name="q31" value="D"> D. 使用计算虚拟化技术可以使多个应用同时运行在一台物理主机上</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q31', ['A', 'B'])">提交答案</button>
+        <div class="result" id="result-q31"></div>
+    </div>
+
+    <!-- 题目32 -->
+    <div class="question">
+        <h3>32. 华为FusionCompute中，开启计算资源调度自动化功能后，虚拟机发生迁移的的原因可能是？（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q32" value="A"> A. windows虚拟机发生蓝屏并且处理策略为“HA虚拟机”</label>
+            <label><input type="checkbox" name="q32" value="B"> B. 运行在虚拟机上的应用程序崩溃</label>
+            <label><input type="checkbox" name="q32" value="C"> C. 管理员根据系统提示手动迁移</label>
+            <label><input type="checkbox" name="q32" value="D"> D. 系统根据调度策略自动迁移</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q32', ['C', 'D'])">提交答案</button>
+        <div class="result" id="result-q32"></div>
+    </div>
+
+    <!-- 题目33 -->
+    <div class="question">
+        <h3>33. 以下哪个FusionCompute集群规则组策略是不存在的（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q33" value="A"> A. 聚集虚拟机</label>
+            <label><input type="radio" name="q33" value="B"> B. 互斥虚拟机</label>
+            <label><input type="radio" name="q33" value="C"> C. 虚拟机到主机</label>
+            <label><input type="radio" name="q33" value="D"> D. 禁止虚拟机</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q33', ['D'])">提交答案</button>
+        <div class="result" id="result-q33"></div>
+    </div>
+
+    <!-- 题目34 -->
+    <div class="question">
+        <h3>34. 将整个虚拟机（硬件配置、BIOS配置、内存状态、磁盘状态、CPU 状态）储存在独立于物理硬件的一小组文件中。只需复制几个文件就可以随时随地根据需要复制、保存和移动虚拟机，请问这是利用了虚拟化的哪个特性（单选题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q34" value="A"> A. 隔离</label>
+            <label><input type="radio" name="q34" value="B"> B. 封装</label>
+            <label><input type="radio" name="q34" value="C"> C. 独立</label>
+            <label><input type="radio" name="q34" value="D"> D. 分区</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q34', ['B'])">提交答案</button>
+        <div class="result" id="result-q34"></div>
+    </div>
+
+    <!-- 题目35 -->
+    <div class="question">
+        <h3>35. 关于HostMchine和GuestMachine关系描述正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q35" value="A"> A. 使用了虚拟化技术后，一台HostMachine只能运行一个Hypervisor</label>
+            <label><input type="checkbox" name="q35" value="B"> B. 使用了虚拟化技术后，一台GuestMachine只能运行在创建它的的HostMachine上</label>
+            <label><input type="checkbox" name="q35" value="C"> C. 使用了虚拟化技术后，一台GuestMachine可以同时使用多台HostMachine的资源</label>
+            <label><input type="checkbox" name="q35" value="D"> D. 使用了虚拟化技术后，一台HostMachine能够运行多台GuestMachine</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q35', ['A', 'D'])">提交答案</button>
+        <div class="result" id="result-q35"></div>
+    </div>
+
+    <!-- 题目36 -->
+    <div class="question">
+        <h3>36. NAS系统通常比SAN更容易部署和管理，并且具有低成本和易用性的优势（判断题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q36" value="A"> A. 正确</label>
+            <label><input type="radio" name="q36" value="B"> B. 错误</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q36', ['A'])">提交答案</button>
+        <div class="result" id="result-q36"></div>
+    </div>
+
+    <!-- 题目38 -->
+    <div class="question">
+        <h3>38. 以下关于虚拟化和云计算关系描述正确的是（多选题）</h3>
+        <div class="options">
+            <label><input type="checkbox" name="q38" value="A"> A. 虚拟化是一种技术，云计算是种服务模式，虚拟化推动了云计算的发展</label>
+            <label><input type="checkbox" name="q38" value="B"> B. 没有云计算，虚拟化就没有存在的价值</label>
+            <label><input type="checkbox" name="q38" value="C"> C. 虚拟化是实现云计算的重要技术之一</label>
+            <label><input type="checkbox" name="q38" value="D"> D. 没有虚拟化，云计算就没有存在的价值</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q38', ['A', 'C', 'D'])">提交答案</button>
+        <div class="result" id="result-q38"></div>
+    </div>
+
+    <!-- 题目39 -->
+    <div class="question">
+        <h3>39. 支持虚拟机总配置内存超过物理主机实际运行内存，通过虚拟机之间使用内存气泡、内存交换以及内存共享等技术实现物理内存超规格使用（判断题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q39" value="A"> A. 正确</label>
+            <label><input type="radio" name="q39" value="B"> B. 错误</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q39', ['A'])">提交答案</button>
+        <div class="result" id="result-q39"></div>
+    </div>
+
+    <!-- 题目40 -->
+    <div class="question">
+        <h3>40. 以RH服务器使用2.6 GHz主频CPU为例，单台服务器有2个物理CPU，每颗CPU有8核，又因为超线程技术可以提供每个物理内核两个处理线程，因此CPU总资源为83.2 GHz（判断题）</h3>
+        <div class="options">
+            <label><input type="radio" name="q40" value="A"> A. 正确</label>
+            <label><input type="radio" name="q40" value="B"> B. 错误</label>
+        </div>
+        <button class="submit-btn" onclick="checkAnswer('q40', ['A'])">提交答案</button>
+        <div class="result" id="result-q40"></div>
+    </div>
+
+    <script>
+        function checkAnswer(questionId, correctAnswers) {
+            const options = document.querySelectorAll(`input[name=${questionId}]:checked`);
+            const selectedAnswers = Array.from(options).map(option => option.value);
+            const resultDiv = document.getElementById(`result-${questionId}`);
+
+            if (selectedAnswers.length === 0) {
+                resultDiv.textContent = "请选择答案！";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            const isCorrect = selectedAnswers.length === correctAnswers.length &&
+                             selectedAnswers.every(answer => correctAnswers.includes(answer));
+
+            if (isCorrect) {
+                resultDiv.textContent = "回答正确！";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "回答错误！正确答案是：" + correctAnswers.join(", ");
+                resultDiv.style.color = "red";
+            }
+        }
+
+        function checkFillInBlank(questionId, correctAnswers) {
+            const inputs = document.querySelectorAll(`#${questionId}-1, #${questionId}-2, #${questionId}-3, #${questionId}-4, #${questionId}-5`);
+            const userAnswers = Array.from(inputs).map(input => input.value.trim());
+            const resultDiv = document.getElementById(`result-${questionId}`);
+
+            if (userAnswers.some(answer => answer === "")) {
+                resultDiv.textContent = "请填写所有空！";
+                resultDiv.style.color = "red";
+                return;
+            }
+
+            const isCorrect = userAnswers.every((answer, index) => answer === correctAnswers[index]);
+
+            if (isCorrect) {
+                resultDiv.textContent = "回答正确！";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "回答错误！正确答案是：" + correctAnswers.join(", ");
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+</html>
